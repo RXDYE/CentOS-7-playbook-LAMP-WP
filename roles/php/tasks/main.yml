@@ -1,4 +1,16 @@
 ---
+- name: install epel
+  yum: name=epel-release
+
+- name: Add remi-php73
+  yum_repository:
+    name: remi-php73
+    description: Remi's PHP 7.1 RPM repository for Enterprise Linux $releasever - $basearch
+    mirrorlist: http://rpms.remirepo.net/enterprise/$releasever/php73/mirror
+    enabled: yes
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+
 - name: install php and php-mysql
   yum:
     state: present
@@ -8,4 +20,4 @@
   notify: restart httpd
 
 - name: copy phpinfo page for testing
-  copy: src=info.php dest=/var/www/html/info.php
+  copy: src=info.php dest=/var/www/wordpress/info.php
