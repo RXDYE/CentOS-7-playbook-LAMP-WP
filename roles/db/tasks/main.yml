@@ -18,4 +18,4 @@
     name: "{{mysql_wp.user}}"
     password: "{{mysql_wp.password}}"
     priv: "{{mysql_wp.priveleges}}"
-    host: "{{mysql_wp.host}}"
+    host: "{{mysql_wp.user_host}}"
