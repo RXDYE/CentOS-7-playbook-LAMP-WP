@@ -11,3 +11,9 @@
   roles: 
     - apache2
     - php
+
+- name: database setup
+  hosts: database
+  become: yes
+  roles:
+    - db

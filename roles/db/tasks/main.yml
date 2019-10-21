@@ -1,0 +1,21 @@
+---
+- name: install mysql
+  yum:
+    name:
+      - mariadb
+      - mariadb-server
+
+- name: install mysql-python
+  yum: name=MySQL-python
+- name: run mysql on boot
+  service: name=mariadb state=started enabled=yes
+
+- name: create wordpress database
+  mysql_db: name={{db_name}} state=present
+
+- name: create wordpress user
+  mysql_user:
+    name: "{{mysql_wp.user}}"
+    password: "{{mysql_wp.password}}"
+    priv: "{{mysql_wp.priveleges}}"
+    host: "{{mysql_wp.host}}"
