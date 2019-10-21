@@ -11,6 +11,7 @@
   roles: 
     - apache2
     - php
+    - wordpress
 
 - name: database setup
   hosts: database

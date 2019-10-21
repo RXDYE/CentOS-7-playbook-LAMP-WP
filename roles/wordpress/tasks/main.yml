@@ -1,0 +1,38 @@
+---
+- name: download wp
+  get_url:
+    url: http://wordpress.org/latest.zip
+    dest: /tmp/wordpress.tar.gz
+
+- name: unzip wp
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: /var/www/
+    remote_src: yes
+
+- name: Create a directory if it does not exist
+  file:
+    path: /var/www/wordpress/wp-content/uploads
+    state: directory
+    group: apache
+
+- name: set proper permissions on wp
+  file:
+    path: /var/www/wordpress
+    state: directory
+    recurse: yes
+    owner: apache
+    group: apache
+    mode: '755'
+
+- name: copy config file
+  copy:
+   force: no
+   remote_src: yes
+   src: /var/www/wordpress/wp-config-sample.php
+   dest: /var/www/wordpress/wp-config.php
+
+- name: Update WordPress config file
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/wordpress/wp-config.php
