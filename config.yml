@@ -4,3 +4,10 @@
   become: yes
   roles: 
     - common
+
+- name: wp-servers setup
+  hosts: wp-servers
+  become: yes
+  roles: 
+    - apache2
+    - php
