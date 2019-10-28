@@ -18,6 +18,3 @@
       - php
       - php-mysql
   notify: restart httpd
-
-- name: copy phpinfo page for testing
-  copy: src=info.php dest=/var/www/wordpress/info.php
