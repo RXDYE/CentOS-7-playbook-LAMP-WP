@@ -36,3 +36,11 @@
   template:
     src: wp-config.php.j2
     dest: /var/www/wordpress/wp-config.php
+
+- name: change root httpd dir
+  lineinfile: 
+    dest=/etc/httpd/conf/httpd.conf
+    regexp="(.)+DocumentRoot /var/www/html"
+    line="DocumentRoot /var/www/wordpress"
+  notify:
+    - restart httpd
