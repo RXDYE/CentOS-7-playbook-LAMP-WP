@@ -1,0 +1,9 @@
+---
+db_name: wordpress
+
+mysql_wp:
+  user: wpuser
+  password: wppassword
+  priveleges: "{{db_name}}.*:ALL"
+  user_host: '%'
+  host: xxx.xxx.xxx.xxx
